@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/tasks', 'TaskController')->middleware('auth');
+Route::resource('/country', 'CountryController')->middleware('auth');
 
 Auth::routes();
 
