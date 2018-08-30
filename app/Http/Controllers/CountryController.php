@@ -99,7 +99,7 @@ class CountryController extends Controller
      */
     public function update(CountryRequest $request, Country $Country)
     {
-        $request_data = $request->only(['name', 'description']);
+        $request_data = $request->only(['name']);
 
         $this->CountryRepository->update($Country->id, $request_data);
 
