@@ -28,51 +28,51 @@ LaravelCRUD.controller('CountryController', ['$scope', '$http', function($scope,
     // Open Create-Task modal
     $scope.initAdd = function () {
         $scope.resetForm();
-        $('#add_new_task').modal('show');
+        $('#add_new_country').modal('show');
     };
 
     // Add new task
-    $scope.addTask = function () {
+    $scope.addCountry = function () {
         $http.post('/country', {
             name: $scope.country.name
         }).then(function success(response) {
             $scope.resetForm();
             $scope.country.push(response.data.country);
-            $('#add_new_task').modal('hide');
+            $('#add_new_country').modal('hide');
         }, function error(error) {
             $scope.recordErrors(error);
         });
     };
 
-    $scope.edit_task = {};
+    $scope.edit_country = {};
 
     // Open Edit-Task modal
     $scope.initEdit = function (index) {
         $scope.errors = [];
-        $scope.edit_task = $scope.country[index];
-        $('#edit_task').modal('show');
+        $scope.edit_country = $scope.country[index];
+        $('#edit_country').modal('show');
     };
 
     // Update task
-    $scope.updateTask = function () {
-        $http.patch('/country/' + $scope.edit_task.id, {
-            name: $scope.edit_task.name
+    $scope.updateCountry = function () {
+        $http.patch('/country/' + $scope.edit_country.id, {
+            name: $scope.edit_country.name
         }).then(function success(response) {
             $scope.errors = [];
-            $('#edit_task').modal('hide');
+            $('#edit_country').modal('hide');
         }, function error(error) {
             $scope.recordErrors(error);
         });
     };
 
     // Delete task
-    $scope.deleteTask = function (index) {
+    $scope.deleteCountry = function (index) {
         let confirm = window.confirm('Do you really want to delete this country?');
 
         if (confirm) {
-            $http.delete('/country/' + $scope.country[index].id)
+            $http.delete('/country/' + $scope.deleteCountry[index].id)
                 .then(function success(response) {
-                    $scope.country.splice(index, 1);
+                    $scope.deleteCountry.splice(index, 1);
                 });
         }
     };
